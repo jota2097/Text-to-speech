@@ -1,0 +1,46 @@
+<div class="container-fluid mt-5">
+  <div class="row justify-content-md-center ">
+    <div class="col-12">
+
+      <div class="container shadow-lg p-3 mb-5 bg-white rounded">
+        <form [formGroup]="form">
+          <h1 class="text-center">Text to speech</h1>
+          <div class="row mt-5">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="message">Enter text</label>
+                <textarea class="form-control" formControlName="message" aria-label="With textarea"></textarea>
+              </div>
+            </div>
+            <div class="col-12 mt-3">
+              <div class="form-group">
+                <label for="voices">Voices available </label>
+                <select class="form-control" formControlName="voices" id="voices"
+                  (change)="onChangeVoice($event.target.value)">
+                  <option *ngFor="let voice of voices; let i = index;" [value]="i">{{voice.name}} - {{voice.lang}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="container mt-3">
+            <div class="row justify-content-md-center">
+              <div class="col-auto">
+                <button type="button" class="btn btn-primary" [disabled]="!form.valid"
+                  (click)="speechText()">Speak</button>
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-primary" [disabled]="!form.valid" (click)="pause()">Pause</button>
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-primary" [disabled]="!form.valid"
+                  (click)="resume()">Resume</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
